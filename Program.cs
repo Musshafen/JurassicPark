@@ -6,12 +6,23 @@ namespace JurassicPark
     class Dinosaur
     {
         public string Name { get; set; }
-        public string Diet { get; set; }
+        public string DietType { get; set; }
         public int Weight { get; set; }
-        public int Enclosure { get; set; }
-        public int Acquired { get; set; }
+        public int EnclosureNumber { get; set; }
+        public DateTime WhenAcquired { get; set; }
 
-        //does this return date.time?
+        public void DisplayDinosaurs()
+        {
+            Console.WriteLine($"Name: {Name} ");
+            Console.WriteLine($"Diet: {DietType} ");
+            Console.WriteLine($"Weight: {Weight} ");
+            Console.WriteLine($"Acquired: {WhenAcquired} ");
+            Console.WriteLine($"Enclosure: {EnclosureNumber} ");
+            Console.WriteLine();
+
+
+
+        }
 
 
 
@@ -37,6 +48,8 @@ namespace JurassicPark
         static void Main(string[] args)
         {
             DisplayGreeting();
+
+
 
         }
     }
