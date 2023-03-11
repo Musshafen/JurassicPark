@@ -139,7 +139,7 @@ namespace JurassicPark
                     }
                 }
                 else
-
+                    if (choice == "A")
                 {
 
                     var dinosaur = new Dinosaur();
@@ -153,16 +153,12 @@ namespace JurassicPark
                     dinosaurs.Add(dinosaur);
 
                 }
-
+                else
+                {
+                    Console.WriteLine("Ah-ah-ah, You didn't say the magic word! ");
+                }
 
             }
-
-
-
-
-
-
-
 
         }
     }
