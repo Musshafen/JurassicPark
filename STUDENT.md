@@ -19,3 +19,5 @@ Otherwise do the following _ONCE_ before using the steps above.
 ## PROTIP:
 
 When you are complete with the project and have turned it in to your instructor, update README.md with details about the assignment.
+
+Console.WriteLine($"Your Dino DNA says, {dinosaur.Name} is a {dinosaur.DietType} and is in enclosure: {dinosaur.EnclosureNumber}.");
