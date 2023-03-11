@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace JurassicPark
 
@@ -56,6 +57,8 @@ namespace JurassicPark
 
         static void Main(string[] args)
         {
+            var dinosaurs = new List<Dinosaur>();
+
             var dinosaur = new Dinosaur();
 
             DisplayGreeting();
