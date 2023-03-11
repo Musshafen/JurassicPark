@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace JurassicPark
 
@@ -80,26 +81,19 @@ namespace JurassicPark
                 if (choice == "F")
                 {
 
-                    Dinosaur foundDinosaur = null;
-
                     var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
 
-                    foreach (var dinosaur in dinosaurs)
+                    Dinosaur foundDinosaur = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameToSearchFor);
+
+
+                    if (foundDinosaur == null)
                     {
-                        if (dinosaur.Name == nameToSearchFor)
-                        {
-                            foundDinosaur = dinosaur;
-                        }
-                     
+                        Console.WriteLine(" Access Denied ...haha! -DN");
                     }
-                        if (foundDinosaur == null)
-                        {
-                            Console.WriteLine(" Access Denied ...haha! -DN");
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
-                        }
+                    else
+                    {
+                        Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+                    }
 
 
 
