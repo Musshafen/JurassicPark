@@ -68,7 +68,7 @@ namespace JurassicPark
             while (keepGoing)
             {
                 Console.WriteLine();
-                Console.Write("What do you want to do? (A)dd a dinosaur or (Q)uit: ");
+                Console.Write("What do you want to do?\n(A)dd a dinosaur\n(S)how all the dinosaurs\n(Q)uit\n: ");
                 var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
@@ -77,6 +77,15 @@ namespace JurassicPark
 
                 }
                 else
+                if (choice == "S")
+                {
+                    foreach (var dinosaur in dinosaurs)
+                    {
+                        Console.WriteLine($"Your Dino DNA says, {dinosaur.Name} is a {dinosaur.DietType} and is in enclosure: {dinosaur.EnclosureNumber}.");
+                    }
+                }
+                else
+
                 {
 
                     var dinosaur = new Dinosaur();
