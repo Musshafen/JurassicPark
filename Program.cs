@@ -69,12 +69,40 @@ namespace JurassicPark
             while (keepGoing)
             {
                 Console.WriteLine();
-                Console.Write("What do you want to do?\n(A)dd a dinosaur\n(F)ind a dinosaur\n(S)how all the dinosaurs\n(Q)uit\n: ");
+                Console.Write("What do you want to do?\n(A)dd a dinosaur\n(D)elete a dinosaur\n(F)ind a dinosaur\n(S)how all the dinosaurs\n(Q)uit\n: ");
                 var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
                 {
                     keepGoing = false;
+
+                }
+                else
+                if (choice == "D")
+                {
+                    var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+
+                    Dinosaur foundDinosaur = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameToSearchFor);
+
+                    if (foundDinosaur == null)
+                    {
+                        Console.WriteLine("Ah-ah-ah, no such Dino DNA!");
+                    }
+                    else
+
+                    {
+
+                        Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+
+                        var confirm = PromptForString("Are you sure? [Y/N] ").ToUpper();
+
+                        if (confirm == "Y")
+                        {
+                            dinosaurs.Remove(foundDinosaur);
+                        }
+
+                    }
+
 
                 }
                 else
@@ -88,7 +116,7 @@ namespace JurassicPark
 
                     if (foundDinosaur == null)
                     {
-                        Console.WriteLine(" Access Denied ...haha! -DN");
+                        Console.WriteLine(" Access Denied ...ah-ah-ah! You didn't say the magic word. -DN");
                     }
                     else
                     {
