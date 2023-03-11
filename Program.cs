@@ -45,31 +45,12 @@ namespace JurassicPark
 
         static void Main(string[] args)
         {
-            var dinosaur = new Dinosaur();
+            //var dinosaur = new Dinosaur();
 
             DisplayGreeting();
 
-            var keepGoing = true;
 
-            while (keepGoing)
-            {
-                Console.WriteLine();
-                Console.Write("What do you want to do (A)dd a dinosaur or (Q)uit: ");
-                var choice = Console.ReadLine().ToUpper();
 
-                if (choice == "Q")
-                {
-                    keepGoing = false;
-                }
-                else
-                {
-                    var dinosaur = new Dinosaur();
-
-                    dinosaur.Name = PromptForString("What is your name? ");
-                    dinosaur.DietType = PromptForString("")
-
-                }
-            }
         }
     }
 }
