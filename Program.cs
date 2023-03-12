@@ -16,6 +16,37 @@ namespace JurassicPark
 
     }
 
+    class DinosaurDatabase
+    {
+
+        private List<Dinosaur> Dinosaurs { get; set; } = new List<Dinosaur>();
+
+        public void AddDinosaur(Dinosaur newDinosaur)
+        {
+            Dinosaurs.Add(newDinosaur);
+        }
+
+        public List<Dinosaur> GetAllDinosaurs()
+        {
+            return Dinosaurs;
+        }
+
+        public Dinosaur FindOneDinosaur(string nameToFind)
+        {
+            Dinosaur foundDinosaur = Dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameToFind);
+
+            return foundDinosaur;
+        }
+
+        public void DeleteDinosaur(Dinosaur dinosaurToDelete)
+        {
+            Dinosaurs.Remove(dinosaurToDelete);
+        }
+
+
+
+
+    }
 
     class Program
     {
@@ -160,12 +191,12 @@ namespace JurassicPark
                             foundDinosaur.Name = PromptForString("What is the new name?: ");
                         }
 
-                        if (changeChoice == "DT")
+                        if (changeChoice == "DIETTYPE")
                         {
                             foundDinosaur.DietType = PromptForString("What is the new diet type? ");
                         }
 
-                        if (changeChoice == "ENCLOSURENUMBER")
+                        if (changeChoice == "ENCLOSURE")
                         {
                             foundDinosaur.EnclosureNumber = PromptForInteger("What is the new enclosure number? ");
 
