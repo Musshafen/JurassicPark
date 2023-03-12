@@ -11,5 +11,15 @@ namespace JurassicPark
         public int Weight { get; set; }
         public int EnclosureNumber { get; set; }
 
+        public void DisplayDinosaur()
+        {
+            Console.WriteLine($"Name: {Name} ");
+            Console.WriteLine($"Diet: {DietType} ");
+            Console.WriteLine($"Acquired: {WhenAcquired} ");
+            Console.WriteLine($"Weight: {Weight} lbs ");
+            Console.WriteLine($"Enclosure: {EnclosureNumber} ");
+            Console.WriteLine();
+        }
+
     }
 }

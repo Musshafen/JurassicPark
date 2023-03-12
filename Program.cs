@@ -58,79 +58,75 @@ namespace JurassicPark
                 Console.Write("What do you want to do?\n(A)dd a dinosaur\n(D)elete a dinosaur\n(F)ind a dinosaur\n(S)how all the dinosaurs\n(U)pdate a dinosaur\n(Q)uit\n: ");
                 var choice = Console.ReadLine().ToUpper();
 
-              
 
-                if (choice == "Q")
+                switch (choice)
                 {
-                    keepGoing = false;
+                    case "Q":
 
-                }
-                else
-                if (choice == "D")
-                {
-                    DeleteDinosaur(database);
+                        keepGoing = false;
+                        break;
+                    case "D":
+                        DeleteDinosaur(database);
+                        break;
 
-                }
-                else
-                if (choice == "F")
-                {
-                    FindDinosaur(database);
+                    case "F":
+                        FindDinosaur(database);
+                        break;
+                    case "S":
 
-                }
-                else
-                if (choice == "S")
-                {
-                    ShowAllDinosaurs(database);
-                }
-                else
-                    if (choice == "U")
-                {
-                    var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+                        ShowAllDinosaurs(database);
+                        break;
 
-                    Dinosaur foundDinosaur = database.FindOneDinosaur(nameToSearchFor);
-
-                    if (foundDinosaur == null)
-                    {
-                        Console.WriteLine("Ah-ah-ah, no such Dino DNA!");
-                    }
-                    else
-                    {
-
-                        Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
-                        var changeChoice = PromptForString("What do you want to change [Name/DietType/EnclosureNumber]? ").ToUpper();
-
-                        if (changeChoice == "NAME")
+                    case "U":
                         {
-                            foundDinosaur.Name = PromptForString("What is the new name?: ");
+                            var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+
+                            Dinosaur foundDinosaur = database.FindOneDinosaur(nameToSearchFor);
+
+                            if (foundDinosaur == null)
+                            {
+                                Console.WriteLine("Ah-ah-ah, no such Dino DNA!");
+                            }
+                            else
+                            {
+
+                                Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+                                var changeChoice = PromptForString("What do you want to change [Name/DietType/EnclosureNumber]? ").ToUpper();
+
+                                if (changeChoice == "NAME")
+                                {
+                                    foundDinosaur.Name = PromptForString("What is the new name?: ");
+                                }
+
+                                if (changeChoice == "DIETTYPE")
+                                {
+                                    foundDinosaur.DietType = PromptForString("What is the new diet type? ");
+                                }
+
+                                if (changeChoice == "ENCLOSURE")
+                                {
+                                    foundDinosaur.EnclosureNumber = PromptForInteger("What is the new enclosure number? ");
+
+
+                                }
+
+
+
+                            }
+
                         }
+                        break;
+                    case "A":
+                        AddDinosaur(database);
+                        break;
+                    default:
 
-                        if (changeChoice == "DIETTYPE")
-                        {
-                            foundDinosaur.DietType = PromptForString("What is the new diet type? ");
-                        }
+                        Console.WriteLine("Ah-ah-ah, You didn't say the magic word! ");
+                        break;
 
-                        if (changeChoice == "ENCLOSURE")
-                        {
-                            foundDinosaur.EnclosureNumber = PromptForInteger("What is the new enclosure number? ");
-
-
-                        }
-
-
-
-                    }
-
-                }
-                else
-                if (choice == "A")
-                    AddDinosaur(database);
-                else
-                {
-                    Console.WriteLine("Ah-ah-ah, You didn't say the magic word! ");
                 }
 
             }
-
         }
 
         private static void DeleteDinosaur(DinosaurDatabase database)
