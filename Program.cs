@@ -69,7 +69,7 @@ namespace JurassicPark
             while (keepGoing)
             {
                 Console.WriteLine();
-                Console.Write("What do you want to do?\n(A)dd a dinosaur\n(D)elete a dinosaur\n(F)ind a dinosaur\n(S)how all the dinosaurs\n(Q)uit\n: ");
+                Console.Write("What do you want to do?\n(A)dd a dinosaur\n(D)elete a dinosaur\n(F)ind a dinosaur\n(S)how all the dinosaurs\n(U)pdate a dinosaur\n(Q)uit\n: ");
                 var choice = Console.ReadLine().ToUpper();
 
                 if (choice == "Q")
@@ -139,7 +139,46 @@ namespace JurassicPark
                     }
                 }
                 else
-                    if (choice == "A")
+                    if (choice == "U")
+                {
+                    var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+
+                    Dinosaur foundDinosaur = dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameToSearchFor);
+
+                    if (foundDinosaur == null)
+                    {
+                        Console.WriteLine("Ah-ah-ah, no such Dino DNA!");
+                    }
+                    else
+                    {
+
+                        Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+                        var changeChoice = PromptForString("What do you want to change [Name/DietType/EnclosureNumber]? ").ToUpper();
+
+                        if (changeChoice == "NAME")
+                        {
+                            foundDinosaur.Name = PromptForString("What is the new name?: ");
+                        }
+
+                        if (changeChoice == "DT")
+                        {
+                            foundDinosaur.DietType = PromptForString("What is the new diet type? ");
+                        }
+
+                        if (changeChoice == "ENCLOSURENUMBER")
+                        {
+                            foundDinosaur.EnclosureNumber = PromptForInteger("What is the new enclosure number? ");
+
+
+                        }
+
+
+
+                    }
+
+                }
+                else
+                if (choice == "A")
                 {
 
                     var dinosaur = new Dinosaur();
