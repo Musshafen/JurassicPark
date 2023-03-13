@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
@@ -43,12 +44,124 @@ namespace JurassicPark
             csvWriter.WriteRecords(Dinosaurs);
             fileWriter.Close();
 
+        }
+
+        static string PromptForString(string prompt)
+        {
+            Console.Write(prompt);
+            var userInput = Console.ReadLine();
+
+            return userInput;
+        }
+
+        static int PromptForInteger(string prompt)
+        {
+            Console.Write(prompt);
+            int userInput;
+            var isThisGoodInput = Int32.TryParse(Console.ReadLine(), out userInput);
+
+            if (isThisGoodInput)
+            {
+                return userInput;
+            }
+            else
+            {
+                Console.WriteLine("Ah-ah-ah, that isn't the magic input, I'm using 0 as your answer.");
+                return 0;
+            }
+        }
+
+        static string PromptForDiet(string prompt)
+        {
+            Console.Write(prompt);
+            var userInput = Console.ReadLine().ToUpper();
+            if (userInput == "C" || userInput == "H")
+            {
+                return userInput;
+            }
+            else
+            {
+                Console.WriteLine("Ah-ah-ah, that isn't the magic input, I'm using 0 as your answer.");
+                return "UNKNOWN DINO DNA!";
+            }
+
+        }
+
+        private static void DeleteDinosaur(DinosaurDatabase database)
+        {
+            var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+
+            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
+
+            if (foundDinosaur == null)
+            {
+                Console.WriteLine("Ah-ah-ah, no such Dino DNA!");
+            }
+            else
+
+            {
+
+                Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+
+                var confirm = PromptForString("Are you sure? [Y/N] ").ToUpper();
+
+                if (confirm == "Y")
+                {
+
+                    database.RemoveDinosaur(foundDinosaur);
+                }
+
+            }
+        }
+
+        private static void FindDinosaur(DinosaurDatabase database)
+        {
+            var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+
+            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
+
+
+            if (foundDinosaur == null)
+            {
+                Console.WriteLine(" Access Denied ...ah-ah-ah! You didn't say the magic word. -DN");
+            }
+            else
+            {
+                Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+            }
+        }
+
+        private static void AddDinosaur(DinosaurDatabase database)
+        {
+            var dinosaur = new Dinosaur();
+
+            dinosaur.Name = PromptForString("What is the name of the dinosaur? ");
+            dinosaur.DietType = PromptForString("Is it a (C)arnivore or a (H)erbivore? ").ToUpper();
+            dinosaur.WhenAcquired = DateTime.Now;
+            dinosaur.Weight = PromptForInteger("How much does the dino weigh, in pounds? ");
+            dinosaur.EnclosureNumber = PromptForInteger("Please assign this dino to an enclosure number: ");
+
+            database.AddDinosaur(dinosaur);
+        }
+
+        private static void ShowAllDinosaurs(DinosaurDatabase database)
+        {
+            foreach (var dinosaur in database.GetAllDinosaurs())
+            {
+                Console.WriteLine($"Your Dino DNA says, {dinosaur.Name} is a {dinosaur.DietType} and is in enclosure: {dinosaur.EnclosureNumber}.");
+            }
+
+
+
 
 
         }
 
 
     }
-
-
 }
+
+
+
+
+
