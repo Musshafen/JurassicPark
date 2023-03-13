@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Globalization;
+using System.IO;
+using CsvHelper;
 
 namespace JurassicPark
 
@@ -55,7 +58,7 @@ namespace JurassicPark
             while (keepGoing)
             {
                 Console.WriteLine();
-                Console.Write("What do you want to do?\n(A)dd a dinosaur\n(D)elete a dinosaur\n(F)ind a dinosaur\n(S)how all the dinosaurs\n(U)pdate a dinosaur\n(Q)uit\n: ");
+                Console.Write("What do you want to do?\n(A)dd a dinosaur to the park\n(D)elete a dinosaur\n(S)how all the dinosaurs\n(T)ransfer a dinosaur\n(V)iew a dinosaur\n(Q)uit\n: ");
                 var choice = Console.ReadLine().ToUpper();
 
 
@@ -69,7 +72,7 @@ namespace JurassicPark
                         DeleteDinosaur(database);
                         break;
 
-                    case "F":
+                    case "V":
                         FindDinosaur(database);
                         break;
                     case "S":
@@ -77,11 +80,11 @@ namespace JurassicPark
                         ShowAllDinosaurs(database);
                         break;
 
-                    case "U":
+                    case "T":
                         {
                             var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
 
-                            Dinosaur foundDinosaur = database.FindOneDinosaur(nameToSearchFor);
+                            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
 
                             if (foundDinosaur == null)
                             {
@@ -133,7 +136,7 @@ namespace JurassicPark
         {
             var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
 
-            Dinosaur foundDinosaur = database.FindOneDinosaur(nameToSearchFor);
+            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
 
             if (foundDinosaur == null)
             {
@@ -150,7 +153,7 @@ namespace JurassicPark
                 if (confirm == "Y")
                 {
 
-                    database.DeleteDinosaur(foundDinosaur);
+                    database.RemoveDinosaur(foundDinosaur);
                 }
 
             }
@@ -160,7 +163,7 @@ namespace JurassicPark
         {
             var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
 
-            Dinosaur foundDinosaur = database.FindOneDinosaur(nameToSearchFor);
+            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
 
 
             if (foundDinosaur == null)
@@ -192,6 +195,13 @@ namespace JurassicPark
             {
                 Console.WriteLine($"Your Dino DNA says, {dinosaur.Name} is a {dinosaur.DietType} and is in enclosure: {dinosaur.EnclosureNumber}.");
             }
+
+
+
+
+
         }
+
+
     }
 }
