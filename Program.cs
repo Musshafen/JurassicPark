@@ -51,9 +51,9 @@ namespace JurassicPark
                         DinosaurDatabase.RemoveDinosaur(database);
                         break;
 
-                    //  case "V":
-                    //      FindDinosaur(database);
-                    //      break;
+                    case "V":
+                        DinosaurDatabase.View(database);
+                        break;
                     //  case "S":
 
                     //      ShowAllDinosaurs(database);

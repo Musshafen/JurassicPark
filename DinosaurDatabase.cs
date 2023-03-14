@@ -115,22 +115,38 @@ namespace JurassicPark
             }
         }
 
-        private static void ViewDinosaur(DinosaurDatabase database)
+        public static void View(DinosaurDatabase database)
         {
-            var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+            Console.WriteLine();
+            var viewPreference = PromptForString("Would you like to view the dinosaurs ny (N)ame or (E)nclosure? ").ToUpper();
+            Console.WriteLine();
+            var viewByName = database.Dinosaurs.OrderBy(dinosaur => dinosaur.Name);
+            var viewByEnclosure = database.Dinosaurs.OrderBy(dinosaur => dinosaur.EnclosureNumber);
 
-            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
 
 
-            if (foundDinosaur == null)
+
+            if (database.Dinosaurs.Count == 0)
             {
                 Console.WriteLine(" Access Denied ...ah-ah-ah! You didn't say the magic word. -DN");
             }
-            else
+            else if (viewPreference == "N")
             {
-                Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+                foreach (var viewDinosaur in viewByName)
+
+                {
+                    viewDinosaur.DisplayDinosaur();
+                }
+            }
+            else if (viewPreference == "E")
+            {
+                foreach (var viewDinosaur in viewByEnclosure)
+                {
+                    viewDinosaur.DisplayDinosaur();
+                }
             }
         }
+
 
         public static void AddDinosaur(DinosaurDatabase database)
         {
