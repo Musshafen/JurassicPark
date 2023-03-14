@@ -87,11 +87,12 @@ namespace JurassicPark
 
         }
 
-        private static void RemoveDinosaur(DinosaurDatabase database)
+        public static void RemoveDinosaur(DinosaurDatabase database)
         {
-            var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
+            Console.WriteLine();
+            var nameToRemove = PromptForString("What dinosaur are you looking to remove? ");
 
-            Dinosaur foundDinosaur = database.ViewOneDinosaur(nameToSearchFor);
+            Dinosaur foundDinosaur = database.Dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameToRemove);
 
             if (foundDinosaur == null)
             {
@@ -101,14 +102,14 @@ namespace JurassicPark
 
             {
 
-                Console.WriteLine($"Your Dino DNA says, {foundDinosaur.Name} is a {foundDinosaur.DietType} and is in enclosure: {foundDinosaur.EnclosureNumber}.");
+                Console.WriteLine($"Clever Girl, the {foundDinosaur.Name} will be removed from Jurassic Park");
 
                 var confirm = PromptForString("Are you sure? [Y/N] ").ToUpper();
 
                 if (confirm == "Y")
                 {
 
-                    database.RemoveDinosaur(foundDinosaur);
+                    database.Dinosaurs.Remove(foundDinosaur);
                 }
 
             }

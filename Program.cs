@@ -47,9 +47,9 @@ namespace JurassicPark
                     case "A":
                         DinosaurDatabase.AddDinosaur(database);
                         break;
-                    //  case "R":
-                    //       DeleteDinosaur(database);
-                    //       break;
+                    case "R":
+                        DinosaurDatabase.RemoveDinosaur(database);
+                        break;
 
                     //  case "V":
                     //      FindDinosaur(database);
