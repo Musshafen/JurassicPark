@@ -161,13 +161,19 @@ namespace JurassicPark
             database.Dinosaurs.Add(dinosaur);
         }
 
-        private static void ShowAllDinosaurs(DinosaurDatabase database)
+        public static void Summarize(DinosaurDatabase database)
         {
-            foreach (var dinosaur in database.GetAllDinosaurs())
+            var carnivores = database.Dinosaurs.Where(dinosaur => dinosaur.DietType == "H");
+            var herbivores = database.Dinosaurs.Where(dinosaur => dinosaur.DietType == "C");
+            Console.WriteLine($"Jurassic Park holds {herbivores.Count()} herbivores and {carnivores.Count()} carnivores.");
+            foreach (var herbivore in herbivores)
             {
-                Console.WriteLine($"Your Dino DNA says, {dinosaur.Name} is a {dinosaur.DietType} and is in enclosure: {dinosaur.EnclosureNumber}.");
+                Console.WriteLine($"The herbivores are {herbivore}, ");
             }
-
+            foreach (var carnivore in carnivores)
+            {
+                Console.WriteLine($"The carnivores are: {carnivore}, ");
+            }
 
 
 

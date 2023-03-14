@@ -54,10 +54,10 @@ namespace JurassicPark
                     case "V":
                         DinosaurDatabase.View(database);
                         break;
-                    //  case "S":
+                    case "S":
 
-                    //      ShowAllDinosaurs(database);
-                    //      break;
+                        DinosaurDatabase.Summarize(database);
+                        break;
 
                     //   case "T":
                     //        {
