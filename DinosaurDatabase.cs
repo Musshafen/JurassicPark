@@ -11,11 +11,11 @@ namespace JurassicPark
     class DinosaurDatabase
     {
 
-        private List<Dinosaur> Dinosaurs { get; set; } = new List<Dinosaur>();
+        public List<Dinosaur> Dinosaurs { get; set; } = new List<Dinosaur>();
 
-        public void AddDinosaur(Dinosaur newDinosaur)
+        public void AddDinosaur(Dinosaur add)
         {
-            Dinosaurs.Add(newDinosaur);
+            Dinosaurs.Add(add);
         }
 
         public List<Dinosaur> GetAllDinosaurs()
@@ -87,7 +87,7 @@ namespace JurassicPark
 
         }
 
-        private static void DeleteDinosaur(DinosaurDatabase database)
+        private static void RemoveDinosaur(DinosaurDatabase database)
         {
             var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
 
@@ -114,7 +114,7 @@ namespace JurassicPark
             }
         }
 
-        private static void FindDinosaur(DinosaurDatabase database)
+        private static void ViewDinosaur(DinosaurDatabase database)
         {
             var nameToSearchFor = PromptForString("What dinosaur are you looking for? ");
 
@@ -131,17 +131,17 @@ namespace JurassicPark
             }
         }
 
-        private static void AddDinosaur(DinosaurDatabase database)
+        public static void AddDinosaur(DinosaurDatabase database)
         {
             var dinosaur = new Dinosaur();
-
-            dinosaur.Name = PromptForString("What is the name of the dinosaur? ");
+            Console.WriteLine();
+            dinosaur.Name = PromptForString("What is the name of the dinosaur? ").ToUpper();
             dinosaur.DietType = PromptForString("Is it a (C)arnivore or a (H)erbivore? ").ToUpper();
             dinosaur.WhenAcquired = DateTime.Now;
             dinosaur.Weight = PromptForInteger("How much does the dino weigh, in pounds? ");
             dinosaur.EnclosureNumber = PromptForInteger("Please assign this dino to an enclosure number: ");
 
-            database.AddDinosaur(dinosaur);
+            database.Dinosaurs.Add(dinosaur);
         }
 
         private static void ShowAllDinosaurs(DinosaurDatabase database)
