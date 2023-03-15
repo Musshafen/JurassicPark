@@ -48,7 +48,7 @@ namespace JurassicPark
                         DinosaurDatabase.AddDinosaur(database);
                         break;
                     case "R":
-                        DinosaurDatabase.RemoveDinosaur(database);
+                        DinosaurDatabase.Remove(database);
                         break;
 
                     case "V":

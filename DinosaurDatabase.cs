@@ -87,10 +87,11 @@ namespace JurassicPark
 
         }
 
-        public static void RemoveDinosaur(DinosaurDatabase database)
+        public static void Remove(DinosaurDatabase database)
         {
             Console.WriteLine();
             var nameToRemove = PromptForString("What dinosaur are you looking to remove? ");
+            Console.WriteLine();
 
             Dinosaur foundDinosaur = database.Dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == nameToRemove);
 
@@ -100,11 +101,9 @@ namespace JurassicPark
             }
             else
 
+
             {
-
-                Console.WriteLine($"Clever Girl, the {foundDinosaur.Name} will be removed from Jurassic Park");
-
-                var confirm = PromptForString("Are you sure? [Y/N] ").ToUpper();
+                var confirm = PromptForString($"Clever Girl, are you sure you want to remove {foundDinosaur.Name}  [Y/N] ").ToUpper();
 
                 if (confirm == "Y")
                 {
@@ -118,7 +117,7 @@ namespace JurassicPark
         public static void View(DinosaurDatabase database)
         {
             Console.WriteLine();
-            var viewPreference = PromptForString("Would you like to view the dinosaurs ny (N)ame or (E)nclosure? ").ToUpper();
+            var viewPreference = PromptForString("Would you like to view the dinosaurs by (N)ame or (E)nclosure? ").ToUpper();
             Console.WriteLine();
             var viewByName = database.Dinosaurs.OrderBy(dinosaur => dinosaur.Name);
             var viewByEnclosure = database.Dinosaurs.OrderBy(dinosaur => dinosaur.EnclosureNumber);
@@ -163,17 +162,17 @@ namespace JurassicPark
 
         public static void Summarize(DinosaurDatabase database)
         {
-            var carnivores = database.Dinosaurs.Where(dinosaur => dinosaur.DietType == "H");
-            var herbivores = database.Dinosaurs.Where(dinosaur => dinosaur.DietType == "C");
+            var carnivores = database.Dinosaurs.Where(dinosaur => dinosaur.DietType == "C");
+            var herbivores = database.Dinosaurs.Where(dinosaur => dinosaur.DietType == "H");
             Console.WriteLine($"Jurassic Park holds {herbivores.Count()} herbivores and {carnivores.Count()} carnivores.");
-            foreach (var herbivore in herbivores)
-            {
-                Console.WriteLine($"The herbivores are {herbivore}, ");
-            }
-            foreach (var carnivore in carnivores)
-            {
-                Console.WriteLine($"The carnivores are: {carnivore}, ");
-            }
+            //  foreach (var herbivore in herbivores)
+            //{
+            //   Console.WriteLine($"The herbivores are {herbivore.Name}, ");
+            //}
+            //  foreach (var carnivore in carnivores)
+            //{
+            //    Console.WriteLine($"The carnivores are: {carnivore.Name}, ");
+            // }
 
 
 
