@@ -59,12 +59,13 @@ namespace JurassicPark
                         DinosaurDatabase.Summarize(database);
                         break;
 
-                    //   case "T":
-                    //        {
+                    case "T":
+                        DinosaurDatabase.Transfer(database);
 
 
-                    //      }
-                    //    break;
+
+
+                        break;
 
                     default:
 

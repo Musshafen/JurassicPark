@@ -171,18 +171,38 @@ namespace JurassicPark
             //}
             //  foreach (var carnivore in carnivores)
             //{
-            //    Console.WriteLine($"The carnivores are: {carnivore.Name}, ");
-            // }
+            //    Console.WriteLine($"The carnivores are: {carnivore.Name}, ")
 
+
+        }
+        public static void Transfer(DinosaurDatabase database)
+        {
+            Console.WriteLine();
+            var nameToTransfer = PromptForString("What is the name of the dinosaur you'd like to transfer? ").ToUpper();
+            Dinosaur moveDinosaur = database.Dinosaurs.FirstOrDefault(dinosaur => dinosaur.Name == $"{nameToTransfer}");
+            if (moveDinosaur == null)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Ah-ah-ah, there is no DINO DNA by that name. No wonder your extinct. ");
+                Console.WriteLine();
+            }
+            else
+            {
+
+                Console.WriteLine();
+                Console.WriteLine($"{moveDinosaur.Name} is currently in Enclosure {moveDinosaur.EnclosureNumber}.");
+                Console.WriteLine();
+                moveDinosaur.EnclosureNumber = PromptForInteger($"Please enter {moveDinosaur.Name}'s new enclosure number: ");
+                Console.WriteLine();
+
+
+            }
 
 
 
         }
-
-
     }
 }
-
 
 
 
