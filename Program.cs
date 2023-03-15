@@ -61,10 +61,6 @@ namespace JurassicPark
 
                     case "T":
                         DinosaurDatabase.Transfer(database);
-
-
-
-
                         break;
 
                     default:
@@ -73,6 +69,7 @@ namespace JurassicPark
                         break;
 
                 }
+                database.SaveDinosaurs();
 
             }
         }
