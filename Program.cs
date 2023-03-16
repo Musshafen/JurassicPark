@@ -29,6 +29,8 @@ namespace JurassicPark
 
             DisplayGreeting();
 
+            //database.LoadDinosaurs();
+
             var keepGoing = true;
 
             while (keepGoing)

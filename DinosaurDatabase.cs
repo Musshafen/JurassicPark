@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace JurassicPark
 
@@ -34,6 +35,21 @@ namespace JurassicPark
         {
             Dinosaurs.Remove(dinosaurToRemove);
         }
+
+        public void LoadDinosaurs()
+            {
+                var fileReader = new StreamReader("Dinosaurs.csv");
+                var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+                {
+                    HasHeaderRecord = false,
+
+                };
+                var csvReader = new CsvReader(fileReader, config);
+
+               
+
+            }
+        
 
         public void SaveDinosaurs()
         {
